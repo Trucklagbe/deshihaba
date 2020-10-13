@@ -1,0 +1,48 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.deshi">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:usesCleartextTraffic="true"
+      android:name=".MainApplication"
+      android:label="@string/app_name"
+      android:icon="@drawable/dhaba_logo"
+      android:roundIcon="@drawable/dhaba_logo"
+      android:allowBackup="false"
+      android:theme="@style/AppTheme">
+      <activity
+        android:name=".MainActivity"
+        android:label="@string/app_name"
+        android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
+        android:launchMode="singleTask"
+        android:windowSoftInputMode="adjustResize">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+      </activity>
+      <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+        <receiver android:name="io.invertase.firebase.notifications.RNFirebaseNotificationReceiver"/>
+        <receiver
+            android:enabled="true"
+            android:exported="true"
+            android:name="io.invertase.firebase.notifications.RNFirebaseNotificationsRebootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="io.invertase.firebase.notifications.RNFirebaseBackgroundNotificationActionReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="io.invertase.firebase.notifications.BackgroundAction"/>
+            </intent-filter>
+        </receiver>
+        <service android:name="io.invertase.firebase.notifications.RNFirebaseBackgroundNotificationActionsService"/>
+
+
+    </application>
+
+</manifest>
